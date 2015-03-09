@@ -1,0 +1,205 @@
+<html>
+    <head>
+        <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
+        
+       <link rel="stylesheet" type="text/css" href="/style/main.css">
+       <script src="/scripts/main.js"></script>
+       <!--<script src="/db/db.js"></script>-->
+        
+    </head>
+    <body>
+        <div ng-app="mainApp">
+            
+            <p><a href="#main">Add Student</a></p>
+            <p><a href="#viewStudents">View Students</a></p>
+            
+            
+            <div ng-view></div>
+            
+            
+            <script type="text/ng-template" id="main.htm">
+                <div id="settings">
+                    <button style="margin-top: 16%;margin-left: 15%;" id="createCompany" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lgCreate">Create Company</button>
+                    <button style="margin-top: 16%;" id="modifyCompany" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lgModify">Modify Company</button>
+                </div>
+                
+                
+                <!-- Create Company -->
+                <div class="modal fade bs-example-modal-lgCreate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Create Company</h4>
+                      </div>
+                      <div class="modal-body">                          
+                          <table class="table table-striped table-bordered table-hover table-condensed">
+                            <tr>
+                                <td>Company Name</td>
+                                <td><input type="text" id="companyName"></td>
+                                <td>Address</td>
+                                <td><input type="text" id="companyAddress"></td>
+                            </tr>
+                            <tr>
+                                <td>Print Name</td>
+                                <td><input type="text" id="printName"></td>
+                                <td>CIN</td>
+                                <td><input type="text" id="cin"></td>
+                            </tr>
+                            <tr>
+                                <td>Short Name</td>
+                                <td><input type="text" id="shortName"></td>
+                                <td>IT Pan</td>
+                                <td><input type="text" id="itPan"></td>
+                            </tr>
+                            <tr>
+                                <td>Country</td>
+                                <td><input type="text" id="country"></td>
+                                <td>Tel. No.</td>
+                                <td><input type="text" id="telNumber"></td>
+                            </tr>
+                            <tr>
+                                <td>state</td>
+                                <td><input type="text" id="state"></td>
+                                <td>FAX</td>
+                                <td><input type="text" id="fax"></td>
+                            </tr>
+                             <tr>
+                                <td>F.Y Begginning From</td>
+                                <td><input type="text" id="fyBeggining"></td>
+                                <td>Email</td>
+                                <td><input type="text" id="email"></td>
+                            </tr>
+                          </table>
+
+                          <p></p>
+
+                          <table class="table table-striped table-bordered table-hover table-condensed" style="width:45%;">
+                            <tr>
+                                <td>Currency Symbol</td>
+                                <td><input type="text" id="currency"></td>
+                                <td>(Rupees, dollar)</td>
+                            </tr>
+                            <tr>
+                                <td>Currency String</td>
+                                <td><input type="text" id="currencyString"></td>
+                                <td>(Rupees, Dollar, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td>Currency Sbu-String</td>
+                                <td><input type="text" id="currencySbuString"></td>
+                                <td>(paisa, cent, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td>Currency Font</td>
+                                <td><input type="text" id="currencyFont"></td>
+                            </tr>
+                            <tr>
+                                <td>Currency Character</td>
+                                <td><input type="text" id="currencyCharacter"></td>
+                            </tr>
+                          </table>
+
+                          <table class="table table-striped table-bordered table-hover table-condensed" style="width:45%;">
+                            <tr>
+                                <td>Enable VAT/GST</td>
+                                <td><input type="text" id="vat"></td>
+                                <td>Type</td>
+                                <td><input type="text" id="typeOfVat"></td>
+                            </tr>
+                            <tr>
+                                <td>Enable Add Tax/Schg.</td>
+                                <td><input type="text" id="enableAddTax"></td>
+                                <td>Caption</td>
+                                <td>Caption</td>
+                            </tr>
+                            <tr>
+                                <td>Tin</td>
+                                <td><input type="text" id="tin"></td>
+                            </tr>
+                            <tr>
+                                <td>CST No.</td>
+                                <td><input type="text" id="cst"></td>
+                            </tr>
+                          </table>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lgLogIn">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                 <!-- Modify Company -->
+                <div class="modal fade bs-example-modal-lgModify" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modify Comapny</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form sction="">
+                            <input type="text">
+                            <button type="button">Save</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Log In -->
+                <div class="modal fade bs-example-modal-lgLogIn" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Create User</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form style="margin-left:35%;" action="">
+                          
+                                Name:<input style="margin-left:18%;" type="text"><p></p>
+                               
+                                Password<input style="margin-left:14.5%;" type="password"><p></p>
+                              
+                                Confirm Password<input style="margin-left:5%;" type="password"><p></p>
+                                
+                                <button style="margin-left:25.5%;" type="button" class="btn btn-primary" ng-click="companyData();">Submit</button>
+                            
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+            </script>
+            
+            <script type="text/ng-template" id="viewStudents.htm">
+               <h2> View Students </h2>	    
+               {{message}}
+            </script>	
+            
+      
+        </div>
+        
+        
+        
+    </body>
+ 
+</html>
