@@ -1,6 +1,10 @@
 var express=require("express");
 var app=express();
 
+var db = require('./db/db');
+var companyDB = require('./companyDAO/companyDB')
+var logger = require('./logger/logger');
+
 app.get('/',function(req,res){
       res.sendfile("index.html");
 });
@@ -13,35 +17,38 @@ app.get('/scripts/main.js',function(req,res){
       res.sendfile("./scripts/main.js");
 });
 
-app.get('/db/db.js',function(req,res){
-      /*res.sendfile("./db/db.js");*/
+app.get('/db',function(req,res){
+      db.createdb();
+});
+
+app.post('/newCompany/Data/:company_data/:login_data', function (req, res) {
     
-/*    var fs = require("fs"),
-    sqlite3 = require('sqlite3').verbose(),
-    TransactionDatabase = require("sqlite3-transactions").TransactionDatabase,
-    logger = require('./logger/logger');
+    
+    var companyData = JSON.parse(req.params.company_data);
+    var loginData = JSON.parse(req.params.login_data);
+    
+    companyDB.createCompany(companyData, loginData, function(result){
+        console.log(result);
+    });
+    
+    res.send("server");
+   
+});
 
-appFolder = process.env.USERPROFILE + "\\Paxcom",
-dbFile = appFolder + "\\company.db",
-existFolder = fs.existsSync(appFolder);
-existFile = fs.existsSync(dbFile);
+app.get('/getAllCompanies', function(req, res){
+    companyDB.getAllCompanies(function(result){
+        res.send(result);
+    });
+});
 
-if (!existFolder) {
-    console.log("Creating DB folder " + appFolder);
-    fs.mkdir(dbFolder);
-}
-
-if (!existFile) {
-    console.log("Creating DB file " + dbFile);
-    fs.openSync(dbFile, "w");
-}
-
-var db = exports.db = new TransactionDatabase(new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
-
-db.run('CREATE TABLE IF NOT EXISTS companyData (company_id INTEGER PRIMARY KEY AUTOINCREMENT, company_name TEXT, company_address TEXT)');
- */   
+app.get('/getCompany/Detail/:companyName', function(req, res){
+    
+    companyDB.getCompanyDetails(req.params.companyName, function(result){
+        res.send(result);
+    });
     
 });
+
 
 app.listen(5000,function(){
     console.log("Working on port 5000");
